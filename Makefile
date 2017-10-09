@@ -38,6 +38,7 @@ $(eval $(call add_src_executable,sqrt_tmp,sqrt/tmp.cpp))
 $(eval $(call add_src_executable,sqrt_smart_tmp,sqrt/smart_tmp.cpp))
 
 $(eval $(call add_src_executable,catch_test_1,catch/test1.cpp))
+$(eval $(call add_src_executable,catch_test_r_pow, catch/test_r_pow.cpp))
 
 $(eval $(call add_src_executable,threads_p1_hello0,threads/part1/Hello0.cpp,-pthread))
 $(eval $(call add_src_executable,threads_p1_hello1,threads/part1/Hello1.cpp,-pthread))
@@ -90,8 +91,9 @@ $(eval $(call add_executable_set,vector_list,vector_list))
 $(eval $(call add_executable_set,vector_list_update_1,vector_list_update_1))
 $(eval $(call add_executable_set,named_tmp,named_tmp))
 $(eval $(call add_executable_set,bench_pow_double,bench_pow_double))
+$(eval $(call add_executable_set,catch_test_r_pow,catch_test_r_pow))
 
-release: release_threads_p1 release_threads_p2 release_threads_p3 release_threads_p4 release_threads_bench release_linear_sorting release_boost_po_v1 release_vector_list release_vector_list_update_1 release_intrusive_list release_bench_pow_double
+release: release_threads_p1 release_threads_p2 release_threads_p3 release_threads_p4 release_threads_bench release_linear_sorting release_boost_po_v1 release_vector_list release_vector_list_update_1 release_intrusive_list release_bench_pow_double catch_test_r_pow
 debug: debug_threads_p1 debug_threads_p2 debug_threads_p3 debug_threads_p4 debug_threads_bench debug_linear_sorting debug_boost_po_v1 debug_vector_list debug_vector_list_update_1 debug_intrusive_list
 
 all: release debug

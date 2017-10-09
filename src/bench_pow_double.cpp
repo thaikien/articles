@@ -8,6 +8,7 @@
 #include <iostream>
 #include <chrono>
 #include <cmath>
+#include "r_pow.hpp"
 
 using timer = std::chrono::high_resolution_clock;
 using microseconds =  std::chrono::microseconds;
@@ -44,6 +45,24 @@ double bench_std_pow(){
     auto us = std::chrono::duration_cast<microseconds>(t1 - t0);
 
     std::cout << "std::pow(x, " << Exp << "): " << us.count() << "us" << std::endl;
+
+    return result;
+}
+
+template <size_t It, size_t Exp>
+double bench_r_pow(){
+    timer::time_point t0 = timer::now();
+
+    double result = 0;
+
+    for(size_t i = 0; i < It; ++i){
+        result += r_pow<Exp>(double(i));
+    }
+
+    timer::time_point t1 = timer::now();
+    auto us = std::chrono::duration_cast<microseconds>(t1 - t0);
+
+    std::cout << "r_pow<" << Exp << ">(x): " << us.count() << "us" << std::endl;
 
     return result;
 }
@@ -144,6 +163,13 @@ int main(){
     result += bench_pow_2<1000000>();
     result += bench_pow_2<10000000>();
 
+    result += bench_r_pow<100, 2>();
+    result += bench_r_pow<1000, 2>();
+    result += bench_r_pow<10000, 2>();
+    result += bench_r_pow<100000, 2>();
+    result += bench_r_pow<1000000, 2>();
+    result += bench_r_pow<10000000, 2>();
+
     result += bench_c_pow<100, 3>();
     result += bench_c_pow<1000, 3>();
     result += bench_c_pow<10000, 3>();
@@ -164,6 +190,13 @@ int main(){
     result += bench_pow_3<100000>();
     result += bench_pow_3<1000000>();
     result += bench_pow_3<10000000>();
+
+    result += bench_r_pow<100, 3>();
+    result += bench_r_pow<1000, 3>();
+    result += bench_r_pow<10000, 3>();
+    result += bench_r_pow<100000, 3>();
+    result += bench_r_pow<1000000, 3>();
+    result += bench_r_pow<10000000, 3>();
 
     result += bench_c_pow<100, 4>();
     result += bench_c_pow<1000, 4>();
@@ -186,6 +219,13 @@ int main(){
     result += bench_pow_4<1000000>();
     result += bench_pow_4<10000000>();
 
+    result += bench_r_pow<100, 4>();
+    result += bench_r_pow<1000, 4>();
+    result += bench_r_pow<10000, 4>();
+    result += bench_r_pow<100000, 4>();
+    result += bench_r_pow<1000000, 4>();
+    result += bench_r_pow<10000000, 4>();
+
     result += bench_c_pow<100, 5>();
     result += bench_c_pow<1000, 5>();
     result += bench_c_pow<10000, 5>();
@@ -206,6 +246,13 @@ int main(){
     result += bench_pow_5<100000>();
     result += bench_pow_5<1000000>();
     result += bench_pow_5<10000000>();
+
+    result += bench_r_pow<100, 5>();
+    result += bench_r_pow<1000, 5>();
+    result += bench_r_pow<10000, 5>();
+    result += bench_r_pow<100000, 5>();
+    result += bench_r_pow<1000000, 5>();
+    result += bench_r_pow<10000000, 5>();
 
     return (int) result;
 }
